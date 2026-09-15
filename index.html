@@ -453,7 +453,7 @@
   }).join('');
 
   document.getElementById('rosterNums').innerHTML = TEAM.divisions.map(d =>
-    `<span class="tag">${d.name} · ${(d.roster || []).length} players</span>`
+    `<span class="tag">${d.name}</span>`
   ).join('');
 
   document.getElementById('statsStrip').innerHTML = [
