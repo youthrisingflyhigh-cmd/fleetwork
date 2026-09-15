@@ -37,12 +37,13 @@ const TEAM = {
   // leave it off for a number-only avatar.
   roster: [
     { photo: "nick", num: "22", name: "Nick Snyder", ht: `5'11"`, divisions: ["Menlo Division A", "Majestic D1 Division"] },
-    { num: "24", name: "Popp", ht: `5'11"`, divisions: ["Menlo Division A", "Majestic D1 Division"] },
-    { num: "—", name: "Masa", ht: `6'5"`, divisions: ["Menlo Division A"] },
+    { photo: "popp", num: "24", name: "Popp", ht: `5'11"`, divisions: ["Menlo Division A", "Majestic D1 Division"] },
+    { photo: "masa", num: "—", name: "Masa", ht: `6'5"`, divisions: ["Menlo Division A"] },
     { num: "—", name: "Jan Van der Kooij", ht: `6'7"`, divisions: ["Menlo Division A"] },
-    { num: "—", name: "Terence Pellum", ht: `6'7"`, divisions: ["Menlo Division A"] },
+    // Real jersey shows #41 — added since he had no number on record yet.
+    { photo: "terence", num: "41", name: "Terence Pellum", ht: `6'7"`, divisions: ["Menlo Division A"] },
     { photo: "matt", num: "23", name: "Matt Mcandrews", ht: `6'0"`, divisions: ["Menlo Division A", "Majestic D1 Division"] },
-    { num: "—", name: "Alex Manu", ht: `6'0"`, divisions: ["Menlo Division A"] },
+    { photo: "alex", num: "—", name: "Alex Manu", ht: `6'0"`, divisions: ["Menlo Division A"] },
     { photo: "jc", num: "20", name: "JC", ht: `6'1"`, divisions: ["Menlo Division A", "Majestic D1 Division", "Southbay Hoops 35+ Division"] },
     { photo: "destry", num: "—", name: "Destry", ht: `6'2"`, divisions: ["Menlo Division A", "Majestic D1 Division"] },
     // Sage's #23 is confirmed by his real jersey — same number as Matt Mcandrews.
@@ -50,7 +51,9 @@ const TEAM = {
     { photo: "sage", num: "23", name: "Sage", ht: `6'5"`, divisions: ["Menlo Division A", "Majestic D1 Division"] },
     { num: "—", name: "Sway", ht: `6'5"`, divisions: ["Menlo Division A"] },
     { photo: "rizzo", num: "8", name: "Rizzo Dumlao", ht: `5'8"`, divisions: ["Menlo Division A", "Majestic D1 Division", "Southbay Hoops 35+ Division"] },
-    { num: "15", name: "Andre Hayes", ht: `6'4"`, divisions: ["Majestic D1 Division"] },
+    // Photo shows #23 on an alternate black jersey — kept the #15 already on file
+    // since that's what was recorded earlier; flagged in case it should change.
+    { photo: "dre", num: "15", name: "Andre Hayes", ht: `6'4"`, divisions: ["Majestic D1 Division"] },
     { photo: "ansley", num: "33", name: "Ansley", ht: `6'3"`, divisions: ["Majestic D1 Division"] },
     { num: "—", name: "City", ht: "—", divisions: ["Majestic D1 Division"] },
     { num: "—", name: "Pat", ht: `6'5"`, divisions: ["Majestic D1 Division"] },
