@@ -6,55 +6,12 @@
 const TEAM = {
   tagline: "The premier men's league team in the South Bay — we play together, play hard defense, and do the little things that win games.",
 
-  // Just the season label — the actual leagues/divisions Fleetwork plays in
-  // live below in `divisions`, since that can be more than one at a time.
-  season: {
-    label: "Fall '26"
-  },
-
-  // Every division Fleetwork currently competes in. Add or remove entries as
-  // registrations change. Only divisions with real schedule info get a table —
-  // leave windowStart/windowEnd/playoffs/weeks/opponents off (or empty) until
-  // a league publishes them, and the site will show "schedule TBD" instead.
-  // Every division Fleetwork currently competes in — each with its own roster.
-  // Only divisions with real schedule info get a schedule table — leave
-  // windowStart/windowEnd/playoffs/weeks off until a league publishes them.
+  // Every division Fleetwork currently competes in. Only divisions with real
+  // schedule info get a schedule table — leave windowStart/windowEnd/playoffs/
+  // weeks off until a league publishes them, and the site shows "schedule TBD".
   divisions: [
-    {
-      name: "Menlo Division A",
-      roster: [
-        { num: "—", name: "Nick Snyder", ht: `5'11"` },
-        { num: "—", name: "Popp", ht: `5'11"` },
-        { num: "—", name: "Masa", ht: `6'5"` },
-        { num: "—", name: "Jan Van der Kooij", ht: `6'7"` },
-        { num: "—", name: "Terence Pellum", ht: `6'7"` },
-        { num: "—", name: "Matt Mcandrews", ht: `6'0"` },
-        { num: "—", name: "Alex Manu", ht: `6'0"` },
-        { num: "—", name: "JC", ht: `6'1"` },
-        { num: "—", name: "Destry", ht: `6'2"` },
-        { num: "23", name: "Sage", ht: `6'5"` },
-        { num: "—", name: "Sway", ht: `6'5"` },
-        { num: "8", name: "Rizzo Dumlao", ht: `5'8"` }
-      ]
-    },
-    {
-      name: "Majestic D1 Division",
-      roster: [
-        { num: "22", name: "Nick Snyder", ht: `5'11"` },
-        { num: "24", name: "Popp", ht: `5'11"` },
-        { num: "15", name: "Andre Hayes", ht: `6'4"` },
-        { num: "23", name: "Sage", ht: `6'5"` },
-        { num: "—", name: "Ansley", ht: `6'3"` },
-        { num: "—", name: "Matt Mcandrews", ht: `6'0"` },
-        { num: "—", name: "JC", ht: `6'1"` },
-        { num: "—", name: "Destry", ht: `6'2"` },
-        { num: "—", name: "City", ht: "—" },
-        { num: "—", name: "Pat", ht: `6'5"` },
-        { num: "—", name: "Josh D", ht: `6'3"` },
-        { num: "—", name: "Big Josh", ht: `6'7"` },
-        { num: "8", name: "Rizzo Dumlao", ht: `5'8"` }
-      ]
-    },
+    { name: "Menlo Division A" },
+    { name: "Majestic D1 Division" },
     {
       name: "Southbay Hoops 35+ Division",
       windowStart: "Sep 23",
@@ -70,19 +27,45 @@ const TEAM = {
         { week: 6, date: "TBD", opponent: "TBD", time: "TBD", venue: "TBD" },
         { week: 7, date: "TBD", opponent: "TBD", time: "TBD", venue: "TBD" },
         { week: 8, date: "TBD", opponent: "TBD", time: "TBD", venue: "TBD" }
-      ],
-      roster: [
-        { num: "38", name: "Zack", ht: `6'2"` },
-        { num: "77", name: "Jesse", ht: `6'2"` },
-        { num: "21", name: "JC", ht: `6'1"` },
-        { num: "2", name: "Ed", ht: `5'7"` },
-        { num: "8", name: "Rizzo Dumlao", ht: `5'8"` },
-        { num: "10", name: "Tuan", ht: `5'10"` },
-        { num: "9", name: "Janssen", ht: `5'11"` },
-        { num: "24", name: "Ray", ht: `5'10"` },
-        { num: "23", name: "Daniel", ht: `5'7"` }
       ]
     }
+  ],
+
+  // One whole-team roster. Each player lists every division they suit up for —
+  // add or remove names from `divisions` as that changes. `photo` (optional)
+  // points to a file in assets/players/; leave it off for a number-only avatar.
+  roster: [
+    { photo: "nick", num: "22", name: "Nick Snyder", ht: `5'11"`, divisions: ["Menlo Division A", "Majestic D1 Division"] },
+    { num: "24", name: "Popp", ht: `5'11"`, divisions: ["Menlo Division A", "Majestic D1 Division"] },
+    { num: "—", name: "Masa", ht: `6'5"`, divisions: ["Menlo Division A"] },
+    { num: "—", name: "Jan Van der Kooij", ht: `6'7"`, divisions: ["Menlo Division A"] },
+    { num: "—", name: "Terence Pellum", ht: `6'7"`, divisions: ["Menlo Division A"] },
+    { photo: "matt", num: "23", name: "Matt Mcandrews", ht: `6'0"`, divisions: ["Menlo Division A", "Majestic D1 Division"] },
+    { num: "—", name: "Alex Manu", ht: `6'0"`, divisions: ["Menlo Division A"] },
+    { photo: "jc", num: "20", name: "JC", ht: `6'1"`, divisions: ["Menlo Division A", "Majestic D1 Division", "Southbay Hoops 35+ Division"] },
+    { photo: "destry", num: "—", name: "Destry", ht: `6'2"`, divisions: ["Menlo Division A", "Majestic D1 Division"] },
+    // Sage's #23 is confirmed by his real jersey — same number as Matt Mcandrews.
+    // Flagging the duplicate rather than picking one to change; let me know if it should.
+    { photo: "sage", num: "23", name: "Sage", ht: `6'5"`, divisions: ["Menlo Division A", "Majestic D1 Division"] },
+    { num: "—", name: "Sway", ht: `6'5"`, divisions: ["Menlo Division A"] },
+    { photo: "rizzo", num: "8", name: "Rizzo Dumlao", ht: `5'8"`, divisions: ["Menlo Division A", "Majestic D1 Division", "Southbay Hoops 35+ Division"] },
+    { num: "15", name: "Andre Hayes", ht: `6'4"`, divisions: ["Majestic D1 Division"] },
+    { photo: "ansley", num: "33", name: "Ansley", ht: `6'3"`, divisions: ["Majestic D1 Division"] },
+    { num: "—", name: "City", ht: "—", divisions: ["Majestic D1 Division"] },
+    { num: "—", name: "Pat", ht: `6'5"`, divisions: ["Majestic D1 Division"] },
+    { num: "—", name: "Josh D", ht: `6'3"`, divisions: ["Majestic D1 Division"] },
+    { num: "—", name: "Big Josh", ht: `6'7"`, divisions: ["Majestic D1 Division"] },
+    // Division confirmed (Majestic D1) — still unclear if this is Josh D or Big Josh
+    // above, or a separate third person. Merge with one of those once confirmed.
+    { photo: "josh", num: "34", name: "Josh", ht: "—", divisions: ["Majestic D1 Division"] },
+    { photo: "darrell", num: "24", name: "Darrell", ht: "—", divisions: ["Menlo Division A", "Majestic D1 Division"] },
+    { num: "38", name: "Zack", ht: `6'2"`, divisions: ["Southbay Hoops 35+ Division"] },
+    { num: "77", name: "Jesse", ht: `6'2"`, divisions: ["Southbay Hoops 35+ Division"] },
+    { num: "2", name: "Ed", ht: `5'7"`, divisions: ["Southbay Hoops 35+ Division"] },
+    { num: "10", name: "Tuan", ht: `5'10"`, divisions: ["Southbay Hoops 35+ Division"] },
+    { num: "9", name: "Janssen", ht: `5'11"`, divisions: ["Southbay Hoops 35+ Division"] },
+    { num: "24", name: "Ray", ht: `5'10"`, divisions: ["Southbay Hoops 35+ Division"] },
+    { num: "23", name: "Daniel", ht: `5'7"`, divisions: ["Southbay Hoops 35+ Division"] }
   ],
 
   openRuns: {
