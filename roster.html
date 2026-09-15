@@ -27,7 +27,11 @@
   header.scorebug{ position: sticky; top:0; z-index:50; background: rgba(10,10,11,0.92); backdrop-filter: blur(8px); border-bottom: 3px solid var(--orange); }
   .scorebug-inner{ max-width: var(--maxw); margin:0 auto; padding:0 24px; height:60px; display:flex; align-items:center; justify-content:space-between; gap:20px; }
   .brand{ display:flex; align-items:center; gap:10px; text-decoration:none; }
-  .brand img{ height:34px; width:auto; }
+  .brand-mark{
+    width: 38px; height: 38px; border-radius: 50%; background: var(--text);
+    display: flex; align-items: center; justify-content: center; flex: none; padding: 5px;
+  }
+  .brand-mark img{ width: 100%; height: 100%; object-fit: contain; }
   .brand-name{ font-family:'Anton', sans-serif; font-size:17px; letter-spacing:0.02em; }
   nav.primary-nav{ display:flex; gap:22px; }
   nav.primary-nav a{ text-decoration:none; color: var(--text-muted); font-size:13px; font-weight:700; font-family:'Anton', sans-serif; text-transform:uppercase; letter-spacing:0.04em; padding:8px 2px; border-bottom:3px solid transparent; transition: color .15s, border-color .15s; white-space:nowrap; }
@@ -93,7 +97,7 @@
 <header class="scorebug">
   <div class="scorebug-inner">
     <a class="brand" href="index.html">
-      <img src="assets/logo-mark.png" alt="Fleetwork Basketball">
+      <span class="brand-mark"><img src="assets/logo-mark.png" alt="Fleetwork Basketball"></span>
       <span class="brand-name">Fleetwork</span>
     </a>
     <nav class="primary-nav" id="primaryNav">
@@ -145,7 +149,7 @@
 <script>
   document.getElementById('rosterBody').innerHTML = TEAM.roster.map(p => {
     const avatar = p.photo
-      ? `<img src="assets/players/${p.photo}.jpg" alt="${p.name}">`
+      ? `<img src="assets/${p.photo}.jpg" alt="${p.name}">`
       : `<span class="num-fallback">${p.num}</span>`;
     const divisions = (p.divisions && p.divisions.length)
       ? p.divisions.join(', ')

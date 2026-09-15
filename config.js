@@ -33,7 +33,8 @@ const TEAM = {
 
   // One whole-team roster. Each player lists every division they suit up for —
   // add or remove names from `divisions` as that changes. `photo` (optional)
-  // points to a file in assets/players/; leave it off for a number-only avatar.
+  // points to a file directly in assets/ (e.g. "nick" -> assets/nick.jpg);
+  // leave it off for a number-only avatar.
   roster: [
     { photo: "nick", num: "22", name: "Nick Snyder", ht: `5'11"`, divisions: ["Menlo Division A", "Majestic D1 Division"] },
     { num: "24", name: "Popp", ht: `5'11"`, divisions: ["Menlo Division A", "Majestic D1 Division"] },
