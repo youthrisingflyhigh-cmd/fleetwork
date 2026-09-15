@@ -64,7 +64,11 @@
     height: 60px; display: flex; align-items: center; justify-content: space-between; gap: 20px;
   }
   .brand{ display: flex; align-items: center; gap: 10px; text-decoration: none; }
-  .brand img{ height: 34px; width: auto; }
+  .brand-mark{
+    width: 38px; height: 38px; border-radius: 50%; background: var(--text);
+    display: flex; align-items: center; justify-content: center; flex: none; padding: 5px;
+  }
+  .brand-mark img{ width: 100%; height: 100%; object-fit: contain; }
   .brand-name{ font-family: 'Anton', sans-serif; font-size: 17px; letter-spacing: 0.02em; }
 
   nav.primary-nav{ display: flex; gap: 22px; }
@@ -90,17 +94,24 @@
   }
 
   /* ---------- hero ---------- */
-  .hero{ padding: 72px 0 0; position: relative; overflow: hidden; }
+  .hero{ padding: 100px 0 96px; position: relative; overflow: hidden; }
+  .hero-bg{ position: absolute; inset: 0; z-index: 0; }
+  .hero-bg img{
+    width: 100%; height: 100%; object-fit: cover; object-position: top;
+    filter: grayscale(0.55) contrast(1.05) brightness(0.55);
+  }
+  .hero-bg::after{
+    content: ""; position: absolute; inset: 0;
+    background:
+      linear-gradient(100deg, rgba(10,10,11,0.94) 0%, rgba(10,10,11,0.75) 42%, rgba(10,10,11,0.4) 75%),
+      linear-gradient(0deg, var(--bg) 0%, transparent 22%);
+  }
   .hero-swipe{
     position: absolute; top: -20%; right: -10%; width: 60%; height: 140%;
     background: linear-gradient(115deg, transparent 40%, rgba(245,96,26,0.16) 55%, rgba(223,10,17,0.12) 70%, transparent 85%);
-    pointer-events: none; z-index: 0;
+    pointer-events: none; z-index: 1;
   }
-  .hero-grid{
-    display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 48px; align-items: center;
-    position: relative; z-index: 1;
-  }
-  .hero-copy{ animation: hero-in .9s cubic-bezier(.2,.8,.2,1) both; }
+  .hero-copy{ position: relative; z-index: 2; animation: hero-in .9s cubic-bezier(.2,.8,.2,1) both; max-width: 700px; }
   @keyframes hero-in{
     from{ opacity: 0; transform: translateX(-24px); }
     to{ opacity: 1; transform: translateX(0); }
@@ -109,7 +120,7 @@
 
   .tagline{ font-size: 20px; color: var(--text); font-weight: 500; max-width: 50ch; margin: 22px 0 28px; }
 
-  .hero-ctas{ display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 56px; }
+  .hero-ctas{ display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 8px; }
   .btn{
     display: inline-flex; align-items: center; gap: 8px;
     padding: 15px 30px; border-radius: 2px;
@@ -124,35 +135,8 @@
   .btn-outline{ border-color: var(--line-strong); color: var(--text); }
   .btn-outline:hover{ border-color: var(--red); color: var(--orange); }
 
-  .hero-photo{
-    position: relative; border-radius: var(--radius); overflow: hidden;
-    aspect-ratio: 4/3; border-bottom: 5px solid var(--orange);
-  }
-  .hero-photo img{ width: 100%; height: 100%; object-fit: cover; filter: grayscale(0.4) contrast(1.08); }
-  .hero-photo::after{
-    content: ""; position: absolute; inset: 0;
-    background: linear-gradient(155deg, rgba(245,96,26,0.32), rgba(10,10,11,0.6) 72%);
-    mix-blend-mode: multiply;
-  }
-
   @media (max-width: 860px){
-    .hero-grid{ grid-template-columns: 1fr; }
-    .hero-photo{ order: -1; aspect-ratio: 16/9; }
     .hero-logo{ width: min(360px, 100%); }
-  }
-
-  /* ---------- scoreboard strip ---------- */
-  .strip{ border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: var(--bg-panel); }
-  .strip-inner{ max-width: var(--maxw); margin: 0 auto; padding: 0 24px; display: grid; grid-template-columns: repeat(4, 1fr); }
-  .strip-cell{ padding: 20px 18px; border-left: 1px solid var(--line); border-bottom: 3px solid var(--orange); font-variant-numeric: tabular-nums; }
-  .strip-cell:first-child{ border-left: none; }
-  .strip-cell:nth-child(even){ border-bottom-color: var(--red); }
-  .strip-label{ font-size: 12px; color: var(--text-muted); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.05em; }
-  .strip-value{ font-family: 'Anton', sans-serif; font-size: 19px; letter-spacing: 0.01em; color: var(--orange); text-shadow: 0 0 16px rgba(245,96,26,0.35); }
-  .strip-cell:nth-child(even) .strip-value{ color: var(--red); text-shadow: 0 0 16px rgba(223,10,17,0.35); }
-  @media (max-width: 700px){
-    .strip-inner{ grid-template-columns: repeat(2, 1fr); }
-    .strip-cell:nth-child(3){ border-left: none; }
   }
 
   /* ---------- generic section ---------- */
@@ -277,7 +261,7 @@
 <header class="scorebug">
   <div class="scorebug-inner">
     <a class="brand" href="#top">
-      <img src="assets/logo-mark.png" alt="Fleetwork Basketball">
+      <span class="brand-mark"><img src="assets/logo-mark.png" alt="Fleetwork Basketball"></span>
       <span class="brand-name">Fleetwork</span>
     </a>
     <nav class="primary-nav" id="primaryNav">
@@ -296,26 +280,18 @@
 <main id="top">
 
   <section class="hero">
+    <div class="hero-bg" aria-hidden="true"><img src="assets/team-photo.jpg" alt=""></div>
     <div class="hero-swipe" aria-hidden="true"></div>
-    <div class="wrap hero-grid">
-      <div class="hero-copy">
-        <img class="hero-logo" src="assets/logo-lockup.png" alt="Fleetwork Basketball">
-        <p class="tagline" id="tagline"><!-- filled by JS --></p>
-        <div class="tag-row" id="divisionTags" style="margin-bottom: 30px;"><!-- filled by JS --></div>
-        <div class="hero-ctas">
-          <a class="btn btn-solid" href="#schedule">See the schedule</a>
-          <a class="btn btn-outline" href="#runs">Catch an open run</a>
-        </div>
-      </div>
-      <div class="hero-photo">
-        <img src="assets/team-photo.jpg" alt="Fleetwork players on the court">
+    <div class="wrap hero-copy">
+      <img class="hero-logo" src="assets/logo-lockup.png" alt="Fleetwork Basketball">
+      <p class="tagline" id="tagline"><!-- filled by JS --></p>
+      <div class="tag-row" id="divisionTags" style="margin-bottom: 30px;"><!-- filled by JS --></div>
+      <div class="hero-ctas">
+        <a class="btn btn-solid" href="#schedule">See the schedule</a>
+        <a class="btn btn-outline" href="#runs">Catch an open run</a>
       </div>
     </div>
   </section>
-
-  <div class="strip">
-    <div class="strip-inner" id="scoreStrip"><!-- filled by JS --></div>
-  </div>
 
   <section id="approach">
     <div class="wrap">
@@ -412,15 +388,6 @@
 <script>
   document.getElementById('tagline').textContent = TEAM.tagline;
   document.getElementById('divisionTags').innerHTML = TEAM.divisions.map(d => `<span class="tag">${d.name}</span>`).join('');
-
-  const scheduled = TEAM.divisions.find(d => d.weeks);
-  const strip = document.getElementById('scoreStrip');
-  strip.innerHTML = [
-    ["Season", TEAM.season.label],
-    ["Leagues", String(TEAM.divisions.length)],
-    scheduled ? ["Reg. season", `${scheduled.windowStart} – ${scheduled.windowEnd}`] : ["Reg. season", "TBD"],
-    scheduled ? ["Playoffs", scheduled.playoffs] : ["Playoffs", "TBD"]
-  ].map(([l,v]) => `<div class="strip-cell"><div class="strip-label">${l}</div><div class="strip-value">${v}</div></div>`).join('');
 
   document.getElementById('runsIntro').textContent = TEAM.openRuns.intro;
   document.getElementById('runsWhen').textContent = TEAM.openRuns.when;
