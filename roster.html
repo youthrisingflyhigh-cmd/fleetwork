@@ -60,17 +60,33 @@
   table.roster-table th, table.roster-table td{ text-align:left; padding: 12px; border-bottom: 1px solid var(--line); font-size:14px; vertical-align: middle; }
   table.roster-table th{ color: var(--text-muted); font-weight:700; font-size:12px; text-transform:uppercase; letter-spacing:0.04em; }
   table.roster-table tr:hover td{ background: rgba(245,96,26,0.04); }
-  .avatar-box{
-    width:46px; height:58px; border-radius:6px; overflow:hidden; flex:none;
-    background: rgba(245,96,26,0.1); border:1px solid rgba(245,96,26,0.35);
-    display:flex; align-items:center; justify-content:center;
-  }
-  .avatar-box img{ width:100%; height:100%; object-fit:cover; display:block; }
-  .avatar-box .num-fallback{ font-family:'Anton', sans-serif; font-size:15px; color: var(--orange); }
-  .player-name-cell{ display:flex; align-items:center; gap:12px; }
-  .player-name-cell .name{ font-weight:600; }
-  .player-divisions{ font-size:12px; color: var(--text-muted); margin-top:2px; }
   .muted{ color: var(--text-muted); }
+
+  /* ---------- player cards ---------- */
+  .roster-grid{ display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .player-card{
+    background: var(--bg-panel); border: 1px solid var(--line); border-top: 3px solid var(--orange);
+    border-radius: var(--radius); padding: 20px; display: flex; flex-direction: column;
+  }
+  .player-card:nth-child(even){ border-top-color: var(--red); }
+  .player-card-head{ display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; margin-bottom: 14px; }
+  .player-card-name{ font-family: 'Anton', sans-serif; font-size: 19px; line-height: 1.15; }
+  .player-card-num{ font-family: 'Anton', sans-serif; font-size: 34px; color: var(--orange); line-height: 1; flex: none; }
+  .player-card:nth-child(even) .player-card-num{ color: var(--red); }
+  .player-card-body{ display: flex; gap: 14px; align-items: flex-start; }
+  .player-card-photo{
+    width: 92px; height: 116px; border-radius: 4px; overflow: hidden; flex: none;
+    background: var(--bg-panel-2);
+  }
+  .player-card-photo img{ width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
+  .player-card-photo svg{ width: 100%; height: 100%; display: block; }
+  .player-card-bio{ flex: 1; font-size: 13px; min-width: 0; }
+  .player-card-bio-row{ padding: 8px 0; border-bottom: 1px solid var(--line); }
+  .player-card-bio-row:last-child{ border-bottom: none; }
+  .player-card-bio-label{ color: var(--text-muted); text-transform: uppercase; font-size: 11px; letter-spacing: 0.04em; font-weight: 700; margin-bottom: 2px; }
+  .player-card-bio-value{ line-height: 1.35; }
+  @media (max-width: 900px){ .roster-grid{ grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 600px){ .roster-grid{ grid-template-columns: 1fr; } }
 
   .roster-division{ margin-bottom:56px; }
   .roster-division:last-child{ margin-bottom:0; }
@@ -121,11 +137,8 @@
 
 <section id="players">
   <div class="wrap">
-    <div class="section-head"><h2>Players</h2><p>The whole Fleetwork roster — divisions each player suits up for are listed under their name.</p></div>
-    <table class="roster-table">
-      <thead><tr><th></th><th>#</th><th>Player</th><th>Ht</th></tr></thead>
-      <tbody id="rosterBody"><!-- filled by JS --></tbody>
-    </table>
+    <div class="section-head"><h2>Players</h2><p>The whole Fleetwork roster — divisions each player suits up for are listed with height below.</p></div>
+    <div class="roster-grid" id="rosterGrid"><!-- filled by JS --></div>
   </div>
 </section>
 
@@ -147,27 +160,39 @@
 
 <script src="config.js"></script>
 <script>
-  document.getElementById('rosterBody').innerHTML = TEAM.roster.map(p => {
-    const avatar = p.photo
+  const SILHOUETTE = `<svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <rect width="100" height="120" fill="#1E2124"/>
+    <circle cx="50" cy="42" r="24" fill="#3A3F44"/>
+    <path d="M8 120 C8 88 26 76 50 76 C74 76 92 88 92 120 Z" fill="#3A3F44"/>
+  </svg>`;
+
+  document.getElementById('rosterGrid').innerHTML = TEAM.roster.map(p => {
+    const photo = p.photo
       ? `<img src="assets/${p.photo}.jpg" alt="${p.name}">`
-      : `<span class="num-fallback">${p.num}</span>`;
+      : SILHOUETTE;
     const divisions = (p.divisions && p.divisions.length)
       ? p.divisions.join(', ')
-      : 'Division TBD';
+      : 'TBD';
     return `
-      <tr>
-        <td><div class="avatar-box">${avatar}</div></td>
-        <td class="muted">${p.num}</td>
-        <td>
-          <div class="player-name-cell">
-            <div>
-              <div class="name">${p.name}</div>
-              <div class="player-divisions">${divisions}</div>
+      <div class="player-card">
+        <div class="player-card-head">
+          <div class="player-card-name">${p.name}</div>
+          <div class="player-card-num">${p.num}</div>
+        </div>
+        <div class="player-card-body">
+          <div class="player-card-photo">${photo}</div>
+          <div class="player-card-bio">
+            <div class="player-card-bio-row">
+              <div class="player-card-bio-label">Height</div>
+              <div class="player-card-bio-value">${p.ht}</div>
+            </div>
+            <div class="player-card-bio-row">
+              <div class="player-card-bio-label">Division</div>
+              <div class="player-card-bio-value">${divisions}</div>
             </div>
           </div>
-        </td>
-        <td class="muted">${p.ht}</td>
-      </tr>`;
+        </div>
+      </div>`;
   }).join('');
 
   document.getElementById('staffGrid').innerHTML = TEAM.staff.map(s => `
@@ -183,11 +208,11 @@
   else { emailEl.href = '#'; emailEl.textContent = 'Add a contact email in config.js'; }
   document.getElementById('year').textContent = new Date().getFullYear();
 
-  const navToggle = document.getElementById('navToggle');
-  const primaryNav = document.getElementById('primaryNav');
-  navToggle.addEventListener('click', () => {
-    const isOpen = primaryNav.classList.toggle('open');
-    navToggle.setAttribute('aria-expanded', String(isOpen));
+  const navToggleEl = document.getElementById('navToggle');
+  const primaryNavEl = document.getElementById('primaryNav');
+  navToggleEl.addEventListener('click', () => {
+    const isOpen = primaryNavEl.classList.toggle('open');
+    navToggleEl.setAttribute('aria-expanded', String(isOpen));
   });
 </script>
 

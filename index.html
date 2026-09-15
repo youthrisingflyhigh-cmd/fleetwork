@@ -434,9 +434,9 @@
 
   // Instagram: real posts render via Instagram's own oEmbed script (no scraping, no API key).
   // With no post links configured yet, show a follow-out card instead of an empty section.
-  const igCarousel = document.getElementById('igCarousel');
+  const igCarouselEl = document.getElementById('igCarousel');
   if (TEAM.instagramPosts && TEAM.instagramPosts.length){
-    igCarousel.innerHTML = TEAM.instagramPosts.map(url => `
+    igCarouselEl.innerHTML = TEAM.instagramPosts.map(url => `
       <div class="ig-embed-wrap">
         <blockquote class="instagram-media" data-instgrm-permalink="${url}" data-instgrm-version="14" style="margin:0;"></blockquote>
       </div>`).join('');
@@ -444,7 +444,7 @@
     s.async = true; s.src = '//www.instagram.com/embed.js';
     document.body.appendChild(s);
   } else {
-    igCarousel.innerHTML = `
+    igCarouselEl.innerHTML = `
       <div class="ig-follow-card">
         <p>No posts linked yet — paste post URLs into <code>instagramPosts</code> in config.js and they'll show up here.</p>
         <a class="btn btn-outline" href="${TEAM.instagramProfile}" target="_blank" rel="noopener">Follow @fleetworkbasketball</a>
@@ -462,14 +462,14 @@
 
   document.getElementById('year').textContent = new Date().getFullYear();
 
-  const navToggle = document.getElementById('navToggle');
-  const primaryNav = document.getElementById('primaryNav');
-  navToggle.addEventListener('click', () => {
-    const isOpen = primaryNav.classList.toggle('open');
-    navToggle.setAttribute('aria-expanded', String(isOpen));
+  const navToggleEl = document.getElementById('navToggle');
+  const primaryNavEl = document.getElementById('primaryNav');
+  navToggleEl.addEventListener('click', () => {
+    const isOpen = primaryNavEl.classList.toggle('open');
+    navToggleEl.setAttribute('aria-expanded', String(isOpen));
   });
-  primaryNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
-    primaryNav.classList.remove('open'); navToggle.setAttribute('aria-expanded', 'false');
+  primaryNavEl.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    primaryNavEl.classList.remove('open'); navToggleEl.setAttribute('aria-expanded', 'false');
   }));
 </script>
 
