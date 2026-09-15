@@ -55,10 +55,7 @@ const TEAM = {
     { num: "—", name: "City", ht: "—", divisions: ["Majestic D1 Division"] },
     { num: "—", name: "Pat", ht: `6'5"`, divisions: ["Majestic D1 Division"] },
     { num: "—", name: "Josh D", ht: `6'3"`, divisions: ["Majestic D1 Division"] },
-    { num: "—", name: "Big Josh", ht: `6'7"`, divisions: ["Majestic D1 Division"] },
-    // Division confirmed (Majestic D1) — still unclear if this is Josh D or Big Josh
-    // above, or a separate third person. Merge with one of those once confirmed.
-    { photo: "josh", num: "34", name: "Josh", ht: "—", divisions: ["Majestic D1 Division"] },
+    { photo: "josh", num: "34", name: "Josh", ht: `6'7"`, divisions: ["Majestic D1 Division"] },
     { photo: "darrell", num: "24", name: "Darrell", ht: "—", divisions: ["Menlo Division A", "Majestic D1 Division"] },
     { num: "38", name: "Zack", ht: `6'2"`, divisions: ["Southbay Hoops 35+ Division"] },
     { num: "77", name: "Jesse", ht: `6'2"`, divisions: ["Southbay Hoops 35+ Division"] },
@@ -76,11 +73,9 @@ const TEAM = {
     bring: ["Indoor court shoes", "Something to sweat in", "Water", "A few bucks if there's a gym fee"]
   },
 
-  // Coaching staff / front office — shown on roster.html.
+  // Team staff — shown on roster.html.
   staff: [
-    { role: "Head Coach", name: "Add name" },
-    { role: "Assistant Coach", name: "Add name" },
-    { role: "Team Manager", name: "Add name" }
+    { role: "Team Manager", name: "Matthew" }
   ],
 
   stats: {

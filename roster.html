@@ -92,7 +92,7 @@
   .roster-division:last-child{ margin-bottom:0; }
   .roster-division h3{ font-family:'Anton', sans-serif; font-size:20px; text-transform:uppercase; letter-spacing:0.02em; margin:0 0 16px; }
 
-  .staff-grid{ display:grid; grid-template-columns: repeat(3, 1fr); gap:16px; }
+  .staff-grid{ display:grid; grid-template-columns: repeat(auto-fill, minmax(200px, 240px)); gap:16px; }
   .staff-card{ background: var(--bg-panel); border:1px solid var(--line); border-top: 3px solid var(--orange); border-radius: var(--radius); padding:24px 20px; }
   .staff-card:nth-child(even){ border-top-color: var(--red); }
   .staff-avatar{ width:52px; height:52px; border-radius:50%; background: rgba(245,96,26,0.1); border:1px solid rgba(245,96,26,0.35); margin-bottom:14px; }
@@ -144,7 +144,7 @@
 
 <section id="staff">
   <div class="wrap">
-    <div class="section-head"><h2>Coaching staff</h2></div>
+    <div class="section-head"><h2>Staff</h2></div>
     <div class="staff-grid" id="staffGrid"><!-- filled by JS --></div>
   </div>
 </section>
