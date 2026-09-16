@@ -103,7 +103,6 @@ const TEAM = {
   instagramPosts: [
     "https://www.instagram.com/p/DbU6epixxAy/",
     "https://www.instagram.com/p/DX0uiw0po-b/",
-    "https://www.instagram.com/p/DTv0ziSEv7w/",
     "https://www.instagram.com/p/DX0t6CkJE88/",
     "https://www.instagram.com/p/DdC3ku0x7Au/",
     "https://www.instagram.com/p/DcY9UuTRNUQ/",
