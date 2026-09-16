@@ -37,7 +37,6 @@ const TEAM = {
   // leave it off for a number-only avatar.
   roster: [
     { photo: "nick", num: "22", name: "Nick Snyder", ht: `5'11"`, divisions: ["Menlo Division A", "Majestic D1 Division"] },
-    { photo: "popp", num: "24", name: "Popp", ht: `5'11"`, divisions: ["Menlo Division A", "Majestic D1 Division"] },
     { photo: "masa", num: "—", name: "Masa", ht: `6'5"`, divisions: ["Menlo Division A"] },
     { num: "—", name: "Jan Van der Kooij", ht: `6'7"`, divisions: ["Menlo Division A"] },
     // Real jersey shows #41 — added since he had no number on record yet.
@@ -59,10 +58,10 @@ const TEAM = {
     { num: "—", name: "Pat", ht: `6'5"`, divisions: ["Majestic D1 Division"] },
     { num: "—", name: "Josh D", ht: `6'3"`, divisions: ["Majestic D1 Division"] },
     { photo: "josh", num: "34", name: "Josh", ht: `6'7"`, divisions: ["Majestic D1 Division"] },
-    { photo: "darrell", num: "24", name: "Darrell", ht: "—", divisions: ["Menlo Division A", "Majestic D1 Division"] },
+    { photo: "darrell", num: "24", name: "Darrell (Popp)", ht: `5'11"`, divisions: ["Menlo Division A", "Majestic D1 Division"] },
     { photo: "rob", num: "11", name: "Rob", ht: `6'5"`, divisions: [] },
     { num: "38", name: "Zack", ht: `6'2"`, divisions: ["Southbay Hoops 35+ Division"] },
-    { num: "77", name: "Jesse", ht: `6'2"`, divisions: ["Southbay Hoops 35+ Division"] },
+    { num: "77", name: "Jesse", ht: `6'2"`, divisions: ["Southbay Hoops 35+ Division", "Majestic D1 Division"] },
     { num: "2", name: "Ed", ht: `5'7"`, divisions: ["Southbay Hoops 35+ Division"] },
     { num: "10", name: "Tuan", ht: `5'10"`, divisions: ["Southbay Hoops 35+ Division"] },
     { num: "9", name: "Janssen", ht: `5'11"`, divisions: ["Southbay Hoops 35+ Division"] },
@@ -105,7 +104,11 @@ const TEAM = {
     "https://www.instagram.com/p/DbU6epixxAy/",
     "https://www.instagram.com/p/DX0uiw0po-b/",
     "https://www.instagram.com/p/DTv0ziSEv7w/",
-    "https://www.instagram.com/p/DX0t6CkJE88/"
+    "https://www.instagram.com/p/DX0t6CkJE88/",
+    "https://www.instagram.com/p/DdC3ku0x7Au/",
+    "https://www.instagram.com/p/DcY9UuTRNUQ/",
+    "https://www.instagram.com/p/DbLpx0xxFob/",
+    "https://www.instagram.com/p/Da3VgX7PH4G/"
   ],
   instagramProfile: "https://instagram.com/fleetworkbasketball",
 
