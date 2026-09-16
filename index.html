@@ -225,11 +225,16 @@
   @media (max-width: 760px){ .reel-grid{ grid-template-columns: 1fr; } }
 
   /* ---------- instagram carousel ---------- */
-  .ig-carousel{ display: flex; gap: 16px; overflow-x: auto; padding-bottom: 10px; scroll-snap-type: x mandatory; }
+  .ig-carousel{ display: flex; gap: 16px; overflow-x: auto; padding-bottom: 10px; scroll-snap-type: x mandatory; align-items: stretch; }
   .ig-carousel > *{ flex: 0 0 auto; scroll-snap-align: start; }
-  .ig-embed-wrap{ width: 340px; max-width: 80vw; }
+  .ig-embed-wrap{
+    width: 300px; max-width: 80vw; background: var(--bg-panel);
+    border: 1px solid var(--line-strong); border-radius: 8px; padding: 10px;
+    display: flex; align-items: center; justify-content: center; overflow: hidden;
+  }
+  .ig-embed-wrap blockquote.instagram-media{ margin: 0 !important; width: 100% !important; min-width: 0 !important; }
   .ig-follow-card{
-    width: 300px; border: 1px solid rgba(245,96,26,0.3); border-radius: var(--radius);
+    width: 300px; border: 1px solid rgba(245,96,26,0.3); border-radius: 8px;
     padding: 28px 24px; display: flex; flex-direction: column; justify-content: center; gap: 14px;
     background: var(--bg-panel);
   }
