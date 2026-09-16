@@ -60,7 +60,7 @@ const TEAM = {
     { photo: "josh", num: "34", name: "Josh", ht: `6'7"`, divisions: ["Majestic D1 Division"] },
     { photo: "darrell", num: "24", name: "Darrell (Popp)", ht: `5'11"`, divisions: ["Menlo Division A", "Majestic D1 Division"] },
     { photo: "rob", num: "11", name: "Rob", ht: `6'5"`, divisions: [] },
-    { num: "38", name: "Zack", ht: `6'2"`, divisions: ["Southbay Hoops 35+ Division"] },
+    { photo: "zack", num: "38", name: "Zack", ht: `6'2"`, divisions: ["Southbay Hoops 35+ Division"] },
     { num: "77", name: "Jesse", ht: `6'2"`, divisions: ["Southbay Hoops 35+ Division", "Majestic D1 Division"] },
     { num: "2", name: "Ed", ht: `5'7"`, divisions: ["Southbay Hoops 35+ Division"] },
     { num: "10", name: "Tuan", ht: `5'10"`, divisions: ["Southbay Hoops 35+ Division"] },
