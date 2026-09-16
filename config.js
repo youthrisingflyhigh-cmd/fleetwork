@@ -101,7 +101,12 @@ const TEAM = {
   // Instagram doesn't let a static site auto-pull a whole profile feed without their API
   // and a server to hold the access token, so this is the closest no-backend equivalent:
   // real, live, official embeds — you just add the post link when you publish one.
-  instagramPosts: [],
+  instagramPosts: [
+    "https://www.instagram.com/p/DbU6epixxAy/",
+    "https://www.instagram.com/p/DX0uiw0po-b/",
+    "https://www.instagram.com/p/DTv0ziSEv7w/",
+    "https://www.instagram.com/p/DX0t6CkJE88/"
+  ],
   instagramProfile: "https://instagram.com/fleetworkbasketball",
 
   socials: {
