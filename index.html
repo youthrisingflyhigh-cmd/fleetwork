@@ -227,18 +227,19 @@
   /* ---------- instagram carousel ---------- */
   .ig-carousel{ display: flex; gap: 16px; overflow-x: auto; padding-bottom: 10px; scroll-snap-type: x mandatory; align-items: stretch; }
   .ig-carousel > *{ flex: 0 0 auto; scroll-snap-align: start; }
-  .ig-embed-wrap{
-    width: 300px; max-width: 80vw; background: var(--bg-panel);
-    border: 1px solid var(--line-strong); border-radius: 8px; padding: 10px;
-    display: flex; align-items: center; justify-content: center; overflow: hidden;
+  .ig-follow-block{
+    display: inline-flex; align-items: center; gap: 18px; padding: 24px 30px;
+    background: var(--bg-panel); border: 1px solid rgba(245,96,26,0.35); border-radius: 8px;
+    text-decoration: none; color: var(--text); transition: border-color .15s, transform .15s;
   }
-  .ig-embed-wrap blockquote.instagram-media{ margin: 0 !important; width: 100% !important; min-width: 0 !important; }
-  .ig-follow-card{
-    width: 300px; border: 1px solid rgba(245,96,26,0.3); border-radius: 8px;
-    padding: 28px 24px; display: flex; flex-direction: column; justify-content: center; gap: 14px;
-    background: var(--bg-panel);
+  .ig-follow-block:hover{ border-color: var(--orange); transform: translateY(-2px); }
+  .ig-follow-icon{
+    width: 52px; height: 52px; border-radius: 50%; flex: none;
+    background: rgba(245,96,26,0.12); display: flex; align-items: center; justify-content: center;
   }
-  .ig-follow-card p{ margin: 0; color: var(--text-muted); font-size: 14px; }
+  .ig-follow-icon svg{ width: 26px; height: 26px; }
+  .ig-follow-title{ display: block; font-weight: 700; font-size: 16px; }
+  .ig-follow-handle{ display: block; color: var(--text-muted); font-size: 14px; margin-top: 2px; }
 
   /* ---------- social ---------- */
   .social-row{ display: flex; gap: 12px; flex-wrap: wrap; }
@@ -364,9 +365,20 @@
     <div class="wrap">
       <div class="section-head">
         <h2>From Instagram</h2>
-        <p>Recent posts from @fleetworkbasketball. Add post links in config.js to keep this current.</p>
       </div>
-      <div class="ig-carousel" id="igCarousel"><!-- filled by JS --></div>
+      <a class="ig-follow-block" id="igFollowBlock" href="#" target="_blank" rel="noopener">
+        <span class="ig-follow-icon">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.6"/>
+            <circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"/>
+            <circle cx="17.2" cy="6.8" r="1.1" fill="currentColor"/>
+          </svg>
+        </span>
+        <span class="ig-follow-text">
+          <span class="ig-follow-title">Follow us on Instagram</span>
+          <span class="ig-follow-handle" id="igFollowHandle"></span>
+        </span>
+      </a>
     </div>
   </section>
 
@@ -437,24 +449,10 @@
       <span class="reel-play" aria-hidden="true">▶</span><span class="reel-caption">${h.caption}</span>
     </a>`).join('');
 
-  // Instagram: real posts render via Instagram's own oEmbed script (no scraping, no API key).
-  // With no post links configured yet, show a follow-out card instead of an empty section.
-  const igCarouselEl = document.getElementById('igCarousel');
-  if (TEAM.instagramPosts && TEAM.instagramPosts.length){
-    igCarouselEl.innerHTML = TEAM.instagramPosts.map(url => `
-      <div class="ig-embed-wrap">
-        <blockquote class="instagram-media" data-instgrm-permalink="${url}" data-instgrm-version="14" style="margin:0;"></blockquote>
-      </div>`).join('');
-    const s = document.createElement('script');
-    s.async = true; s.src = '//www.instagram.com/embed.js';
-    document.body.appendChild(s);
-  } else {
-    igCarouselEl.innerHTML = `
-      <div class="ig-follow-card">
-        <p>No posts linked yet — paste post URLs into <code>instagramPosts</code> in config.js and they'll show up here.</p>
-        <a class="btn btn-outline" href="${TEAM.instagramProfile}" target="_blank" rel="noopener">Follow @fleetworkbasketball</a>
-      </div>`;
-  }
+  // Instagram: single "follow us" link out to the real profile.
+  const igHandle = TEAM.instagramProfile.replace(/^https?:\/\/(www\.)?instagram\.com\//i, '@').replace(/\/$/, '');
+  document.getElementById('igFollowBlock').href = TEAM.instagramProfile;
+  document.getElementById('igFollowHandle').textContent = igHandle;
 
   const socialMeta = { instagram: "Instagram", tiktok: "TikTok", youtube: "YouTube" };
   document.getElementById('socialRow').innerHTML = Object.entries(TEAM.socials).map(([key, url]) => `
