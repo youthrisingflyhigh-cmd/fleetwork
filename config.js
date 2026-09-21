@@ -52,10 +52,10 @@ const TEAM = {
     { photo: "rizzo", num: "8", name: "Rizzo Dumlao", ht: `5'8"`, divisions: ["Majestic D1 Division", "Southbay Hoops 35+ Division"] },
     // Photo shows #23 on an alternate black jersey — kept the #15 already on file
     // since that's what was recorded earlier; flagged in case it should change.
-    { photo: "dre", num: "15", name: "Andre Hayes", ht: `6'4"`, divisions: ["Majestic D1 Division"] },
+    { photo: "dre", num: "15", name: "Andre Hayes", ht: `6'4"`, divisions: ["Southbay Hoops 35+ Division", "Majestic D1 Division"] },
     { photo: "ansley", num: "33", name: "Ansley", ht: `6'3"`, divisions: ["Majestic D1 Division"] },
     { num: "—", name: "City", ht: "—", divisions: ["Majestic D1 Division"] },
-    { num: "—", name: "Pat", ht: `6'5"`, divisions: ["Majestic D1 Division"] },
+    { photo: "pat", num: "45", name: "Pat", ht: `6'5"`, divisions: ["Majestic D1 Division"] },
     { num: "—", name: "Josh D", ht: `6'3"`, divisions: ["Menlo Division A", "Majestic D1 Division", "Southbay Hoops 35+ Division"] },
     { photo: "josh", num: "34", name: "Josh", ht: `6'7"`, divisions: ["Majestic D1 Division"] },
     { photo: "darrell", num: "24", name: "Darrell (Popp)", ht: `5'11"`, divisions: ["Menlo Division A", "Majestic D1 Division"] },
