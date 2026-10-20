@@ -6,6 +6,9 @@
 const TEAM = {
   tagline: "The premier men's league team in the South Bay — we play together, play hard defense, and do the little things that win games.",
 
+  // The current season, shown on the home page scoreboard.
+  season: { label: "Fall '26" },
+
   // Every division Fleetwork currently competes in. Only divisions with real
   // schedule info get a schedule table — leave windowStart/windowEnd/playoffs/
   // weeks off until a league publishes them, and the site shows "schedule TBD".
@@ -57,9 +60,7 @@ const TEAM = {
     { num: "—", name: "City", ht: "—", divisions: ["Majestic D1 Division"] },
     { photo: "pat", num: "45", name: "Pat", ht: `6'5"`, divisions: ["Majestic D1 Division"] },
     { num: "—", name: "Josh D", ht: `6'3"`, divisions: ["Menlo Division A", "Majestic D1 Division", "Southbay Hoops 35+ Division"] },
-    { photo: "josh", num: "34", name: "Josh", ht: `6'7"`, divisions: ["Majestic D1 Division"] },
     { photo: "darrell", num: "24", name: "Darrell (Popp)", ht: `5'11"`, divisions: ["Menlo Division A", "Majestic D1 Division"] },
-    { photo: "rob", num: "11", name: "Rob", ht: `6'5"`, divisions: ["Majestic D1 Division"] },
     { photo: "zack", num: "38", name: "Zack", ht: `6'2"`, divisions: ["Southbay Hoops 35+ Division"] },
     { num: "77", name: "Jesse", ht: `6'2"`, divisions: ["Southbay Hoops 35+ Division", "Majestic D1 Division"] },
     { num: "2", name: "Ed", ht: `5'7"`, divisions: ["Southbay Hoops 35+ Division"] },
@@ -69,10 +70,13 @@ const TEAM = {
     { num: "23", name: "Daniel", ht: `5'7"`, divisions: ["Southbay Hoops 35+ Division"] }
   ],
 
+  // Phrases for the scrolling banner under the hero.
+  ticker: ["Play together", "Play hard defense", "Do the little things", "Win as a team", "Premier men's league team"],
+
   openRuns: {
     intro: "Before the season tips off, and on open weeks during it, we run an open gym — no tryout, no pressure, just get on the floor with the squad.",
-    when: "TBD — usually a Wednesday, confirmed a week out. Check this page or our socials.",
-    where: "Venue TBD — we'll post the gym once it's booked.",
+    when: "Usually a Wednesday night, confirmed a week out. Watch this page and our socials.",
+    where: "We post the gym as soon as it's booked.",
     bring: ["Indoor court shoes", "Something to sweat in", "Water", "A few bucks if there's a gym fee"]
   },
 
@@ -88,12 +92,10 @@ const TEAM = {
     streak: "—"
   },
 
-  // Add real links (YouTube/IG clip URLs) as highlight clips come in.
-  highlights: [
-    { caption: "Add a highlight link", url: "#" },
-    { caption: "Add a highlight link", url: "#" },
-    { caption: "Add a highlight link", url: "#" }
-  ],
+  // Highlights. Add one line per clip, in either format:
+  //   { caption: "Game-winner vs Ohana", video: "assets/clip1.mp4", poster: "assets/clip1.jpg" }  (a video file in the repo)
+  //   { caption: "Game-winner vs Ohana", url: "https://www.youtube.com/watch?v=XXXX" }            (opens the link)
+  highlights: [],
 
   // Instagram carousel: paste specific POST urls here (not the profile URL) to have them
   // render live via Instagram's own embed — e.g. "https://www.instagram.com/p/XXXXXXXXXXX/".
