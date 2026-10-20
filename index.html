@@ -97,9 +97,9 @@
 
   <section id="stats" class="band">
     <div class="wrap">
-      <h2 class="title">Season stats</h2>
-      <p class="lede">Team numbers, updated after every game.</p>
-      <div class="stat-row" id="statRow"></div>
+      <h2 class="title">Our record</h2>
+      <p class="lede">How we're doing in each division, updated after every game.</p>
+      <div class="rec-grid" id="recGrid"></div>
     </div>
   </section>
 
@@ -150,15 +150,35 @@
   $('tickerTrack').innerHTML = half + half;
 
   /* scoreboard */
-  var scheduled = TEAM.divisions.filter(function (d) { return d.playoffs; })[0];
+  function pad(n) { return (n < 10 ? '0' : '') + n; }
+  var nowD = new Date();
+  var todayIso = nowD.getFullYear() + '-' + pad(nowD.getMonth() + 1) + '-' + pad(nowD.getDate());
+  function fmtDate(iso) {
+    var p = iso.split('-');
+    return new Date(+p[0], +p[1] - 1, +p[2]).toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
+  }
+  function minutes(t) {
+    var m = /(\d+):(\d+)\s*(AM|PM)/i.exec(t || '');
+    if (!m) return 0;
+    return (+m[1] % 12) * 60 + (+m[2]) + (m[3].toUpperCase() === 'PM' ? 720 : 0);
+  }
+  var upcoming = [];
+  TEAM.divisions.forEach(function (d) {
+    (d.games || []).forEach(function (g) { if (g.date >= todayIso) upcoming.push({ g: g, div: d.name }); });
+  });
+  upcoming.sort(function (a, b) { return a.g.date === b.g.date ? minutes(a.g.time) - minutes(b.g.time) : (a.g.date < b.g.date ? -1 : 1); });
+  var next = upcoming[0];
+
   var cells = [];
-  if (TEAM.season && TEAM.season.label) cells.push(['Season', TEAM.season.label, true]);
-  cells.push(['Divisions', String(TEAM.divisions.length), false]);
-  cells.push(['On the roster', String(TEAM.roster.length), false]);
-  if (scheduled) cells.push(['Playoffs', scheduled.playoffs, true]);
+  if (TEAM.season && TEAM.season.label) cells.push({ l: 'Season', v: TEAM.season.label, text: true });
+  cells.push({ l: 'Divisions', v: String(TEAM.divisions.length) });
+  cells.push({ l: 'On the roster', v: String(TEAM.roster.length) });
+  if (next) cells.push({ l: 'Next game', v: fmtDate(next.g.date), text: true, sub: next.g.opponent + ', ' + next.g.time, sub2: next.div });
   $('scoreboard').innerHTML = cells.map(function (c) {
-    return '<div class="sb-cell"><span class="sb-label">' + esc(c[0]) + '</span>' +
-           '<span class="sb-value' + (c[2] ? ' text' : '') + '">' + esc(c[1]) + '</span></div>';
+    return '<div class="sb-cell"><span class="sb-label">' + esc(c.l) + '</span>' +
+           '<span class="sb-value' + (c.text ? ' text' : '') + '">' + esc(c.v) + '</span>' +
+           (c.sub ? '<span class="sb-sub">' + esc(c.sub) + '</span>' : '') +
+           (c.sub2 ? '<span class="sb-sub dim">' + esc(c.sub2) + '</span>' : '') + '</div>';
   }).join('');
 
   /* open runs */
@@ -167,10 +187,12 @@
   $('runsWhere').textContent = TEAM.openRuns.where;
   $('runsBring').innerHTML = TEAM.openRuns.bring.map(function (b) { return '<li>' + esc(b) + '</li>'; }).join('');
 
-  /* schedule: only confirmed games get rows */
-  function isReal(w) { return w.opponent && w.opponent !== 'TBD'; }
+  /* schedule: every game, in date order, with results once played */
+  var anyGames = TEAM.divisions.some(function (d) { return d.games && d.games.length; });
+  $('scheduleDivisions').className = 'sched-grid' + (anyGames ? ' has-games' : '');
   $('scheduleDivisions').innerHTML = TEAM.divisions.map(function (d) {
     var meta = [];
+    if (d.record) meta.push(['Record', d.record]);
     if (d.windowStart) meta.push(['Regular season', d.windowStart + ' – ' + d.windowEnd]);
     if (d.playoffs) meta.push(['Playoffs', d.playoffs]);
     var metaHtml = meta.length
@@ -178,14 +200,24 @@
           return '<div><span class="meta-l">' + m[0] + '</span><span class="meta-v">' + esc(m[1]) + '</span></div>';
         }).join('') + '</div>'
       : '';
-    var games = (d.weeks || []).filter(isReal);
-    var body = games.length
-      ? '<div class="table-scroll"><table class="sched-table"><thead><tr><th>Week</th><th>Date</th><th>Opponent</th><th>Tip-off</th><th>Venue</th></tr></thead><tbody>' +
-        games.map(function (w) {
-          return '<tr><td>' + esc(w.week) + '</td><td>' + esc(w.date) + '</td><td>' + esc(w.opponent) + '</td><td>' + esc(w.time) + '</td><td>' + esc(w.venue) + '</td></tr>';
-        }).join('') + '</tbody></table></div>'
-      : '<p class="sched-soon">Game times post here once the league confirms them.</p>';
-    return '<article class="sched-block' + (games.length ? ' wide' : '') + '"><h3>' + esc(d.name) + '</h3>' + metaHtml + body + '</article>';
+    var games = (d.games || []).slice().sort(function (a, b) { return a.date < b.date ? -1 : (a.date > b.date ? 1 : 0); });
+    var body;
+    if (games.length) {
+      var hasResult = games.some(function (g) { return g.result; });
+      body = '<div class="table-scroll"><table class="sched-table"><thead><tr><th>Date</th><th>Opponent</th><th>Tip-off</th><th>Venue</th>' +
+        (hasResult ? '<th>Result</th>' : '') + '</tr></thead><tbody>' +
+        games.map(function (g) {
+          var res = '';
+          if (hasResult) {
+            var txt = g.result || (g.date < todayIso ? 'Pending' : '');
+            res = '<td class="c-r result' + (/^W/i.test(g.result || '') ? ' w' : '') + '">' + esc(txt) + '</td>';
+          }
+          return '<tr' + (g.date < todayIso ? ' class="past"' : '') + '><td class="c-d">' + esc(fmtDate(g.date)) + '</td><td class="c-o">' + esc(g.opponent) + '</td><td class="c-t">' + esc(g.time) + '</td><td class="c-v">' + esc(g.venue) + '</td>' + res + '</tr>';
+        }).join('') + '</tbody></table></div>';
+    } else {
+      body = '<p class="sched-soon">Game times post here once the league confirms them.</p>';
+    }
+    return '<article class="sched-block"><h3>' + esc(d.name) + '</h3>' + metaHtml + body + '</article>';
   }).join('');
 
   /* roster rail: faces first */
@@ -199,12 +231,11 @@
   }).join('') +
   '<a class="rail-card rail-more" href="roster.html"><span>See all ' + TEAM.roster.length + ' players</span></a>';
 
-  /* stats */
-  $('statRow').innerHTML = [
-    ['Record', TEAM.stats.record], ['Points per game', TEAM.stats.ppg],
-    ['Opponent points per game', TEAM.stats.oppPpg], ['Streak', TEAM.stats.streak]
-  ].map(function (s) {
-    return '<div class="stat"><span class="stat-v">' + esc(s[1]) + '</span><span class="stat-l">' + esc(s[0]) + '</span></div>';
+  /* record per division */
+  $('recGrid').innerHTML = TEAM.divisions.map(function (d) {
+    var note = d.note ? '<span class="rec-note">' + esc(d.note) + '</span>' : '';
+    return '<div class="rec"><span class="rec-name">' + esc(d.name) + '</span>' +
+           '<span class="rec-v">' + esc(d.record || '—') + '</span>' + note + '</div>';
   }).join('');
 
   /* highlights: video files, links, or a "coming soon" panel */

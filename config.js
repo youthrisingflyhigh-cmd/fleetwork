@@ -9,28 +9,50 @@ const TEAM = {
   // The current season, shown on the home page scoreboard.
   season: { label: "Fall '26" },
 
-  // Every division Fleetwork currently competes in. Only divisions with real
-  // schedule info get a schedule table — leave windowStart/windowEnd/playoffs/
-  // weeks off until a league publishes them, and the site shows "schedule TBD".
+  // Every division Fleetwork currently competes in.
+  // Per division (all optional):
+  //   record: "1–0"           the current win–loss record
+  //   note: "5th in the standings"
+  //   windowStart / windowEnd / playoffs   shown above the game list
+  //   games: [ { date: "2026-10-25", time: "5:00 PM", opponent: "vs Team", venue: "Gym", result: "W 56–44" } ]
+  //     date is year-month-day. Use "vs Team" for home and "@ Team" for away.
+  //     Add result once a game is played; games are listed in date order.
   divisions: [
-    { name: "Menlo Division A" },
-    { name: "Majestic D1 Division" },
+    {
+      name: "Menlo Division A",
+      record: "2–0",
+      windowStart: "Oct 5",
+      windowEnd: "Dec 7",
+      playoffs: "Dec 14 & Dec 21",
+      games: [
+        { date: "2026-10-05", time: "9:00 PM", opponent: "vs Any Given Monday", venue: "Menlo Park, Court 1", result: "W 56–44" },
+        { date: "2026-10-19", time: "7:00 PM", opponent: "@ Hometown Heroes", venue: "Menlo Park, Court 1", result: "W" },
+        { date: "2026-10-26", time: "8:00 PM", opponent: "vs Blaze Force West", venue: "Menlo Park, Court 1" },
+        { date: "2026-11-02", time: "8:00 PM", opponent: "@ Fiddler Crabs", venue: "Menlo Park, Court 2" },
+        { date: "2026-11-09", time: "7:00 PM", opponent: "vs iOS3", venue: "Menlo Park, Court 2" },
+        { date: "2026-11-16", time: "7:00 PM", opponent: "@ Bay Club Bros", venue: "Menlo Park, Court 2" },
+        { date: "2026-11-30", time: "7:00 PM", opponent: "vs Rim Reapers", venue: "Menlo Park, Court 2" },
+        { date: "2026-12-07", time: "8:00 PM", opponent: "@ Sapa Boys", venue: "Menlo Park, Court 1" }
+      ]
+    },
+    {
+      name: "Majestic D1 Division",
+      record: "0–1",
+      games: [
+        { date: "2026-10-25", time: "5:00 PM", opponent: "@ Out The Net", venue: "The Grove CC" },
+        { date: "2026-11-01", time: "6:00 PM", opponent: "vs Lockdown Elite", venue: "The Grove CC" },
+        { date: "2026-11-08", time: "5:00 PM", opponent: "@ Misfits 1", venue: "The Grove CC" },
+        { date: "2026-11-15", time: "4:00 PM", opponent: "@ Out of Shape", venue: "The Grove CC" },
+        { date: "2026-11-22", time: "4:00 PM", opponent: "vs Calabreezees", venue: "The Grove CC" }
+      ]
+    },
     {
       name: "Southbay Hoops 35+ Division",
+      record: "0–2",
       windowStart: "Sep 23",
       windowEnd: "Nov 18",
       playoffs: "Nov 25 & Dec 2",
-      // One row per regular-season week. Fill in Date / Opponent / Tip-off / Venue as confirmed.
-      weeks: [
-        { week: 1, date: "TBD", opponent: "TBD", time: "TBD", venue: "TBD" },
-        { week: 2, date: "TBD", opponent: "TBD", time: "TBD", venue: "TBD" },
-        { week: 3, date: "TBD", opponent: "TBD", time: "TBD", venue: "TBD" },
-        { week: 4, date: "TBD", opponent: "TBD", time: "TBD", venue: "TBD" },
-        { week: 5, date: "TBD", opponent: "TBD", time: "TBD", venue: "TBD" },
-        { week: 6, date: "TBD", opponent: "TBD", time: "TBD", venue: "TBD" },
-        { week: 7, date: "TBD", opponent: "TBD", time: "TBD", venue: "TBD" },
-        { week: 8, date: "TBD", opponent: "TBD", time: "TBD", venue: "TBD" }
-      ]
+      games: []
     }
   ],
 
@@ -86,13 +108,6 @@ const TEAM = {
   staff: [
     { role: "Team Manager", name: "Matthew" }
   ],
-
-  stats: {
-    record: "0–0",
-    ppg: "—",
-    oppPpg: "—",
-    streak: "—"
-  },
 
   // Highlights. Add one line per clip, in either format:
   //   { caption: "Game-winner vs Ohana", video: "assets/clip1.mp4", poster: "assets/clip1.jpg" }  (a video file in the repo)
