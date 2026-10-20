@@ -41,7 +41,7 @@ const TEAM = {
   roster: [
     { photo: "nick", num: "22", name: "Nick Snyder", ht: `5'11"`, divisions: ["Menlo Division A", "Majestic D1 Division"] },
     { photo: "masa", num: "—", name: "Masa", ht: `6'5"`, divisions: ["Menlo Division A"] },
-    { num: "—", name: "Jan Van der Kooij", ht: `6'7"`, divisions: ["Menlo Division A"] },
+    { photo: "jan", num: "42", name: "Jan Van der Kooij", ht: `6'7"`, divisions: ["Menlo Division A"] },
     // Real jersey shows #41 — added since he had no number on record yet.
     { photo: "terence", num: "41", name: "Terence Pellum", ht: `6'7"`, divisions: ["Menlo Division A"] },
     { photo: "matt", num: "23", name: "Matt Mcandrews", ht: `6'0"`, divisions: ["Menlo Division A", "Majestic D1 Division"] },
@@ -61,6 +61,8 @@ const TEAM = {
     { photo: "pat", num: "45", name: "Pat", ht: `6'5"`, divisions: ["Majestic D1 Division"] },
     { num: "—", name: "Josh D", ht: `6'3"`, divisions: ["Menlo Division A", "Majestic D1 Division", "Southbay Hoops 35+ Division"] },
     { photo: "darrell", num: "24", name: "Darrell (Popp)", ht: `5'11"`, divisions: ["Menlo Division A", "Majestic D1 Division"] },
+    // Stu: height and division(s) still to be added.
+    { photo: "stu", num: "31", name: "Stu", ht: "—", divisions: [] },
     { photo: "zack", num: "38", name: "Zack", ht: `6'2"`, divisions: ["Southbay Hoops 35+ Division"] },
     { num: "77", name: "Jesse", ht: `6'2"`, divisions: ["Southbay Hoops 35+ Division", "Majestic D1 Division"] },
     { num: "2", name: "Ed", ht: `5'7"`, divisions: ["Southbay Hoops 35+ Division"] },
