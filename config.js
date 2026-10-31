@@ -20,14 +20,14 @@ const TEAM = {
   divisions: [
     {
       name: "Menlo Division A",
-      record: "2–0",
+      record: "3–0",
       windowStart: "Oct 5",
       windowEnd: "Dec 7",
       playoffs: "Dec 14 & Dec 21",
       games: [
         { date: "2026-10-05", time: "9:00 PM", opponent: "vs Any Given Monday", venue: "Menlo Park, Court 1", result: "W 56–44" },
         { date: "2026-10-19", time: "7:00 PM", opponent: "@ Hometown Heroes", venue: "Menlo Park, Court 1", result: "W" },
-        { date: "2026-10-26", time: "8:00 PM", opponent: "vs Blaze Force West", venue: "Menlo Park, Court 1" },
+        { date: "2026-10-26", time: "8:00 PM", opponent: "vs Blaze Force West", venue: "Menlo Park, Court 1", result: "W" },
         { date: "2026-11-02", time: "8:00 PM", opponent: "@ Fiddler Crabs", venue: "Menlo Park, Court 2" },
         { date: "2026-11-09", time: "7:00 PM", opponent: "vs iOS3", venue: "Menlo Park, Court 2" },
         { date: "2026-11-16", time: "7:00 PM", opponent: "@ Bay Club Bros", venue: "Menlo Park, Court 2" },
@@ -37,9 +37,9 @@ const TEAM = {
     },
     {
       name: "Majestic D1 Division",
-      record: "0–1",
+      record: "0–2",
       games: [
-        { date: "2026-10-25", time: "5:00 PM", opponent: "@ Out The Net", venue: "The Grove CC" },
+        { date: "2026-10-25", time: "5:00 PM", opponent: "@ Out The Net", venue: "The Grove CC", result: "L" },
         { date: "2026-11-01", time: "6:00 PM", opponent: "vs Lockdown Elite", venue: "The Grove CC" },
         { date: "2026-11-08", time: "5:00 PM", opponent: "@ Misfits 1", venue: "The Grove CC" },
         { date: "2026-11-15", time: "4:00 PM", opponent: "@ Out of Shape", venue: "The Grove CC" },
@@ -48,11 +48,13 @@ const TEAM = {
     },
     {
       name: "Southbay Hoops 35+ Division",
-      record: "0–2",
+      record: "1–4",
       windowStart: "Sep 23",
       windowEnd: "Nov 18",
-      playoffs: "Nov 25 & Dec 2",
-      games: []
+      playoffs: "Dec 2 & Dec 9",
+      games: [
+        { date: "2026-11-18", time: "8:00 PM", opponent: "vs AIM", venue: "Oak Grove Aux Gym" }
+      ]
     }
   ],
 
