@@ -20,7 +20,7 @@ const TEAM = {
   divisions: [
     {
       name: "Menlo Division A",
-      record: "3–0",
+      record: "4–1",
       windowStart: "Oct 5",
       windowEnd: "Dec 7",
       playoffs: "Dec 14 & Dec 21",
@@ -28,8 +28,8 @@ const TEAM = {
         { date: "2026-10-05", time: "9:00 PM", opponent: "vs Any Given Monday", venue: "Menlo Park, Court 1", result: "W 56–44" },
         { date: "2026-10-19", time: "7:00 PM", opponent: "@ Hometown Heroes", venue: "Menlo Park, Court 1", result: "W" },
         { date: "2026-10-26", time: "8:00 PM", opponent: "vs Blaze Force West", venue: "Menlo Park, Court 1", result: "W" },
-        { date: "2026-11-02", time: "8:00 PM", opponent: "@ Fiddler Crabs", venue: "Menlo Park, Court 2" },
-        { date: "2026-11-09", time: "7:00 PM", opponent: "vs iOS3", venue: "Menlo Park, Court 2" },
+        { date: "2026-11-02", time: "8:00 PM", opponent: "@ Fiddler Crabs", venue: "Menlo Park, Court 2", result: "W" },
+        { date: "2026-11-09", time: "7:00 PM", opponent: "vs iOS3", venue: "Menlo Park, Court 2", result: "L" },
         { date: "2026-11-16", time: "7:00 PM", opponent: "@ Bay Club Bros", venue: "Menlo Park, Court 2" },
         { date: "2026-11-30", time: "7:00 PM", opponent: "vs Rim Reapers", venue: "Menlo Park, Court 2" },
         { date: "2026-12-07", time: "8:00 PM", opponent: "@ Sapa Boys", venue: "Menlo Park, Court 1" }
@@ -37,11 +37,11 @@ const TEAM = {
     },
     {
       name: "Majestic D1 Division",
-      record: "0–2",
+      record: "2–2",
       games: [
         { date: "2026-10-25", time: "5:00 PM", opponent: "@ Out The Net", venue: "The Grove CC", result: "L" },
-        { date: "2026-11-01", time: "6:00 PM", opponent: "vs Lockdown Elite", venue: "The Grove CC" },
-        { date: "2026-11-08", time: "5:00 PM", opponent: "@ Misfits 1", venue: "The Grove CC" },
+        { date: "2026-11-01", time: "6:00 PM", opponent: "vs Lockdown Elite", venue: "The Grove CC", result: "W" },
+        { date: "2026-11-08", time: "5:00 PM", opponent: "@ Misfits 1", venue: "The Grove CC", result: "W" },
         { date: "2026-11-15", time: "4:00 PM", opponent: "@ Out of Shape", venue: "The Grove CC" },
         { date: "2026-11-22", time: "4:00 PM", opponent: "vs Calabreezees", venue: "The Grove CC" }
       ]
@@ -81,10 +81,10 @@ const TEAM = {
     // since that's what was recorded earlier; flagged in case it should change.
     { photo: "dre", num: "15", name: "Andre Hayes", ht: `6'4"`, divisions: ["Southbay Hoops 35+ Division", "Majestic D1 Division"] },
     { photo: "ansley", num: "33", name: "Ansley", ht: `6'3"`, divisions: ["Majestic D1 Division"] },
-    { num: "—", name: "City", ht: "—", divisions: ["Majestic D1 Division"] },
     { photo: "pat", num: "45", name: "Pat", ht: `6'5"`, divisions: ["Majestic D1 Division"] },
     { num: "—", name: "Josh D", ht: `6'3"`, divisions: ["Menlo Division A", "Majestic D1 Division", "Southbay Hoops 35+ Division"] },
-    { photo: "darrell", num: "24", name: "Darrell (Popp)", ht: `5'11"`, divisions: ["Menlo Division A", "Majestic D1 Division"] },
+    { photo: "darrell", num: "24", name: "Darrell (Popp) Birton", ht: `5'11"`, divisions: ["Menlo Division A", "Majestic D1 Division"] },
+    { photo: "jon", num: "27", name: "Jon Cadavos", ht: `5'10"`, divisions: ["Menlo Division A", "Majestic D1 Division"] },
     // Stu: height and division(s) still to be added.
     { photo: "stu", num: "31", name: "Stu", ht: "—", divisions: [] },
     { photo: "zack", num: "38", name: "Zack", ht: `6'2"`, divisions: ["Southbay Hoops 35+ Division"] },
